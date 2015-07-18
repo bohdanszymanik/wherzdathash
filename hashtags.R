@@ -18,14 +18,19 @@ instagram <- oauth_endpoint(
   access = "https://api.instagram.com/oauth/access_token")
 myapp <- oauth_app(app_name, client_id, client_secret)
 
+# this line is executed on its own to pop up browser for authentication
 ig_oauth <- oauth2.0_token(instagram, myapp,scope="basic", 
                            type = "application/x-www-form-urlencoded",
                            cache=FALSE)
+
 tmp <- strsplit(toString(names(ig_oauth$credentials)), '"')
 token <- tmp[[1]][4]
 
 require(rjson)
 require(RCurl)
+
+rawJson <- getURL(paste('https://api.instagram.com/v1/tags/knitting/media/recent&access_token=',token,sep=""))
+
 tagged <- fromJSON(
-  getURL(paste('https://api.instagram.com/v1/tags/crochet/media/recent&access_token=',token,sep="")),
+  getURL(paste('https://api.instagram.com/v1/tags/knitting/media/recent&access_token=',token,sep="")),
   unexpected.escape = "keep")
