@@ -6,8 +6,8 @@ print(full_url)
 
 #
 app_name <- "WherzDatHash"
-client_id <- "841908b2b41c493fbea7789d0135e0d9"
-client_secret <- "11cabebf97194f36898e1c0544c56752"
+client_id <- ""
+client_secret <- ""
 scope = "basic"
 
 instagram <- oauth_endpoint(
