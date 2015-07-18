@@ -29,7 +29,18 @@ token <- tmp[[1]][4]
 require(rjson)
 require(RCurl)
 
+# let's decode the jwt just to see what was in there
+
+header <- strsplit(token, '.', fixed=T)[[1]][1]
+claims <- strsplit(token, '.', fixed=T)[[1]][2]
+signature <- strsplit(token, '.', fixed=T)[[1]][3]
+base64Decode(header)
+base64Decode(claims)
+base64Decode(signature)
+
+url <- paste('https://api.instagram.com/v1/tags/knitting/media/recent&access_token=',token,sep="")
 rawJson <- getURL(paste('https://api.instagram.com/v1/tags/knitting/media/recent&access_token=',token,sep=""))
+getURL('https://api.instagram.com/v1/tags/knitting/media/recent?access_token=745814254.1fb234f.95f4c42084524cdca04b949aabd7d74e')
 
 tagged <- fromJSON(
   getURL(paste('https://api.instagram.com/v1/tags/knitting/media/recent&access_token=',token,sep="")),
