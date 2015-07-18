@@ -6,8 +6,11 @@ print(full_url)
 
 #
 app_name <- "WherzDatHash"
-client_id <- "841908b2b41c493fbea7789d0135e0d9"
-client_secret <- "11cabebf97194f36898e1c0544c56752"
+# put sensitive oauth id and secret info into idSecret.R 
+# and don't put it into github
+# client_id <- ...somethin secret...
+# client_secret <- ...somethin secret...
+source("idsecret.R")
 scope = "basic"
 
 instagram <- oauth_endpoint(
